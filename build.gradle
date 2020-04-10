@@ -1,0 +1,32 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.2.5.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+}
+
+group 'com.arun.metrics'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    //lombok
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor('org.projectlombok:lombok')
+    //micrometer
+    compile 'io.micrometer:micrometer-registry-jmx:latest.integration'
+    //springboot
+    compile 'org.springframework:spring-aspects:5.1.2.RELEASE'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group:'org.junit.vintage',module:'junit-vintage-engine'
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
